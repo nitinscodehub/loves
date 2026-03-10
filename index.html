@@ -24,8 +24,6 @@ color:white;
 overflow-x:hidden;
 }
 
-/* pages */
-
 .page{
 display:none;
 min-height:100vh;
@@ -43,8 +41,6 @@ from{opacity:0;transform:translateY(30px);}
 to{opacity:1;transform:translateY(0);}
 }
 
-/* hero */
-
 .hero{
 height:100vh;
 display:flex;
@@ -54,32 +50,13 @@ align-items:center;
 }
 
 .hero h1{
-font-size:42px;
+font-size:40px;
 margin-bottom:20px;
 }
 
-/* ADVANCED BUTTON */
+/* buttons */
 
-.hero button{
-padding:20px 55px;
-font-size:22px;
-border:none;
-border-radius:45px;
-background:linear-gradient(45deg,#ff4d6d,#ff8fa3);
-color:white;
-font-weight:600;
-cursor:pointer;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-transition:0.3s;
-}
-
-.hero button:hover{
-transform:scale(1.1);
-}
-
-/* start music button */
-
-.startMusic{
+button{
 padding:18px 45px;
 font-size:20px;
 border:none;
@@ -92,7 +69,7 @@ box-shadow:0 10px 25px rgba(0,0,0,0.3);
 transition:0.3s;
 }
 
-.startMusic:hover{
+button:hover{
 transform:scale(1.08);
 }
 
@@ -119,8 +96,6 @@ box-shadow:0 10px 20px rgba(0,0,0,0.3);
 transform:scale(1.08);
 }
 
-/* viewer */
-
 .viewer{
 position:fixed;
 top:0;
@@ -145,10 +120,7 @@ border-radius:12px;
 .quote{
 margin-top:20px;
 font-size:20px;
-text-align:center;
 }
-
-/* timeline */
 
 .timeline{
 max-width:600px;
@@ -163,8 +135,6 @@ margin:20px 0;
 border-radius:12px;
 }
 
-/* letter */
-
 .letter{
 background:white;
 color:#333;
@@ -173,17 +143,24 @@ border-radius:15px;
 max-width:600px;
 margin:auto;
 line-height:1.7;
-min-height:120px;
 }
 
-/* final */
-
-.final{
-height:100vh;
+.nav{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
 display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
+gap:20px;
+}
+
+#countdown{
+position:fixed;
+top:15px;
+right:15px;
+background:#00000080;
+padding:10px 15px;
+border-radius:10px;
 }
 
 /* hearts */
@@ -199,59 +176,6 @@ animation:float 6s linear infinite;
 100%{transform:translateY(-600px);opacity:0;}
 }
 
-/* petals */
-
-.petal{
-position:fixed;
-top:-20px;
-font-size:22px;
-animation:fall 8s linear infinite;
-}
-
-@keyframes fall{
-0%{transform:translateY(-20px) rotate(0);}
-100%{transform:translateY(900px) rotate(360deg);}
-}
-
-/* navigation */
-
-.nav{
-position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-display:flex;
-gap:20px;
-}
-
-.nav button{
-padding:16px 40px;
-font-size:18px;
-border:none;
-border-radius:35px;
-background:linear-gradient(45deg,#ff4d6d,#ff8fa3);
-color:white;
-font-weight:600;
-cursor:pointer;
-box-shadow:0 10px 20px rgba(0,0,0,0.3);
-transition:0.3s;
-}
-
-.nav button:hover{
-transform:scale(1.1);
-}
-
-/* countdown */
-
-#countdown{
-position:fixed;
-top:15px;
-right:15px;
-background:#00000080;
-padding:10px 15px;
-border-radius:10px;
-}
-
 </style>
 
 </head>
@@ -260,35 +184,9 @@ border-radius:10px;
 
 <div id="countdown"></div>
 
-<div id="player" style="display:none"></div>
-
-<script src="https://www.youtube.com/iframe_api"></script>
-
-<script>
-
-let player;
-
-function onYouTubeIframeAPIReady(){
-
-player=new YT.Player('player',{
-
-height:'0',
-width:'0',
-videoId:'MNhKgf0yU0Q'
-
-});
-
-}
-
-function startMusic(){
-
-if(player){
-player.playVideo();
-}
-
-}
-
-</script>
+<audio id="bgMusic" loop>
+<source src="birthday.mp3" type="audio/mpeg">
+</audio>
 
 <!-- PAGE 1 -->
 
@@ -306,7 +204,7 @@ player.playVideo();
 
 <br>
 
-<button class="startMusic" onclick="startMusic()">🎵 Start Music</button>
+<button onclick="startMusic()">🎵 Start Music</button>
 
 <br><br>
 
@@ -360,13 +258,8 @@ player.playVideo();
 
 <div class="page" id="p5">
 
-<div class="final">
-
 <h1>I Will Always Choose You ❤️</h1>
-
 <h2>Happy Birthday My Sunflower 🌻</h2>
-
-</div>
 
 </div>
 
@@ -386,6 +279,14 @@ player.playVideo();
 
 <script>
 
+/* music */
+
+function startMusic(){
+document.getElementById("bgMusic").play();
+}
+
+/* navigation */
+
 let page=1;
 
 function go(n){
@@ -396,6 +297,8 @@ document.getElementById("p"+page).classList.add("active");
 
 function next(){if(page<5)go(page+1)}
 function prev(){if(page>1)go(page-1)}
+
+/* gallery */
 
 let photos=[
 {img:"p1.jpg",quote:"Tumhari smile meri duniya roshan kar deti hai ✨"},
@@ -443,21 +346,6 @@ document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
 
 },600);
-
-/* petals */
-
-setInterval(()=>{
-
-let p=document.createElement("div");
-p.className="petal";
-p.innerHTML="🌹";
-p.style.left=Math.random()*100+"%";
-
-document.body.appendChild(p);
-
-setTimeout(()=>p.remove(),8000);
-
-},900);
 
 /* love letter */
 
