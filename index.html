@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday My Sunflower 🌻</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+color:white;
+overflow-x:hidden;
+}
+
+/* pages */
+
+.page{
+display:none;
+min-height:100vh;
+padding:30px;
+text-align:center;
+animation:fade 0.8s;
+}
+
+.active{
+display:block;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(30px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* hero */
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+.hero h1{
+font-size:42px;
+margin-bottom:20px;
+}
+
+/* ADVANCED BUTTON */
+
+.hero button{
+padding:20px 55px;
+font-size:22px;
+border:none;
+border-radius:45px;
+background:linear-gradient(45deg,#ff4d6d,#ff8fa3);
+color:white;
+font-weight:600;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+transition:0.3s;
+}
+
+.hero button:hover{
+transform:scale(1.1);
+}
+
+/* start music button */
+
+.startMusic{
+padding:18px 45px;
+font-size:20px;
+border:none;
+border-radius:40px;
+background:linear-gradient(45deg,#ff4d6d,#ff8fa3);
+color:white;
+font-weight:600;
+cursor:pointer;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+transition:0.3s;
+}
+
+.startMusic:hover{
+transform:scale(1.08);
+}
+
+/* gallery */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+gap:15px;
+margin-top:30px;
+}
+
+.gallery img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:14px;
+cursor:pointer;
+transition:0.4s;
+box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+
+.gallery img:hover{
+transform:scale(1.08);
+}
+
+/* viewer */
+
+.viewer{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#000000dd;
+display:none;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:999;
+padding:20px;
+}
+
+.viewer img{
+max-width:90%;
+max-height:70%;
+border-radius:12px;
+}
+
+.quote{
+margin-top:20px;
+font-size:20px;
+text-align:center;
+}
+
+/* timeline */
+
+.timeline{
+max-width:600px;
+margin:auto;
+text-align:left;
+}
+
+.timeline div{
+background:#ffffff20;
+padding:20px;
+margin:20px 0;
+border-radius:12px;
+}
+
+/* letter */
+
+.letter{
+background:white;
+color:#333;
+padding:30px;
+border-radius:15px;
+max-width:600px;
+margin:auto;
+line-height:1.7;
+min-height:120px;
+}
+
+/* final */
+
+.final{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+/* hearts */
+
+.heart{
+position:fixed;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-600px);opacity:0;}
+}
+
+/* petals */
+
+.petal{
+position:fixed;
+top:-20px;
+font-size:22px;
+animation:fall 8s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-20px) rotate(0);}
+100%{transform:translateY(900px) rotate(360deg);}
+}
+
+/* navigation */
+
+.nav{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:20px;
+}
+
+.nav button{
+padding:16px 40px;
+font-size:18px;
+border:none;
+border-radius:35px;
+background:linear-gradient(45deg,#ff4d6d,#ff8fa3);
+color:white;
+font-weight:600;
+cursor:pointer;
+box-shadow:0 10px 20px rgba(0,0,0,0.3);
+transition:0.3s;
+}
+
+.nav button:hover{
+transform:scale(1.1);
+}
+
+/* countdown */
+
+#countdown{
+position:fixed;
+top:15px;
+right:15px;
+background:#00000080;
+padding:10px 15px;
+border-radius:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="countdown"></div>
+
+<div id="player" style="display:none"></div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+<script>
+
+let player;
+
+function onYouTubeIframeAPIReady(){
+
+player=new YT.Player('player',{
+
+height:'0',
+width:'0',
+videoId:'MNhKgf0yU0Q'
+
+});
+
+}
+
+function startMusic(){
+
+if(player){
+player.playVideo();
+}
+
+}
+
+</script>
+
+<!-- PAGE 1 -->
+
+<div class="page active" id="p1">
+
+<div class="hero">
+
+<h1>Happy Birthday My Sunflower 🌻</h1>
+
+<p>Ye chhoti si website sirf tumhare liye banayi hai ❤️</p>
+
+<br>
+
+<p>🔊 Best experience ke liye pehle music start karein</p>
+
+<br>
+
+<button class="startMusic" onclick="startMusic()">🎵 Start Music</button>
+
+<br><br>
+
+<button onclick="go(2)">Enter</button>
+
+</div>
+
+</div>
+
+<!-- PAGE 2 -->
+
+<div class="page" id="p2">
+
+<h1>Your Beautiful Moments 📸</h1>
+
+<div class="gallery" id="gallery"></div>
+
+</div>
+
+<!-- PAGE 3 -->
+
+<div class="page" id="p3">
+
+<h1>Our Story ❤️</h1>
+
+<div class="timeline">
+
+<div>👀 Jab maine tumhe pehli baar dekha tha, time ruk sa gaya tha.</div>
+
+<div>🤕 Shayad tumhe pata nahi tha, par main quietly tumhe pasand karta raha.</div>
+
+<div>🤝 Phir ek saal baad hum best friends ban gaye aur wahi meri life ka best time tha.</div>
+
+<div>💞 Aur jab tumne "I love you too" bola… meri duniya complete ho gayi.</div>
+
+</div>
+
+</div>
+
+<!-- PAGE 4 -->
+
+<div class="page" id="p4">
+
+<h1>Letter For You 💌</h1>
+
+<div class="letter" id="letter"></div>
+
+</div>
+
+<!-- PAGE 5 -->
+
+<div class="page" id="p5">
+
+<div class="final">
+
+<h1>I Will Always Choose You ❤️</h1>
+
+<h2>Happy Birthday My Sunflower 🌻</h2>
+
+</div>
+
+</div>
+
+<div class="nav">
+
+<button onclick="prev()">Prev</button>
+<button onclick="next()">Next</button>
+
+</div>
+
+<div class="viewer" id="viewer" onclick="closeViewer()">
+
+<img id="viewImg">
+<div class="quote" id="quote"></div>
+
+</div>
+
+<script>
+
+let page=1;
+
+function go(n){
+document.getElementById("p"+page).classList.remove("active");
+page=n;
+document.getElementById("p"+page).classList.add("active");
+}
+
+function next(){if(page<5)go(page+1)}
+function prev(){if(page>1)go(page-1)}
+
+let photos=[
+{img:"p1.jpg",quote:"Tumhari smile meri duniya roshan kar deti hai ✨"},
+{img:"p7.jpg",quote:"Sach kahu to tum meri life ka best part ho ❤️"},
+{img:"p9.jpg",quote:"Tumhare saath har moment special lagta hai"},
+{img:"p11.jpg",quote:"Mera heart sirf tumhe hi choose karta hai"},
+{img:"p12.jpg",quote:"Tum meri sunshine ho ☀️"},
+{img:"p13.jpg",quote:"Tumse pyaar karna meri favorite feeling hai"}
+];
+
+let g=document.getElementById("gallery");
+
+photos.forEach(p=>{
+
+let img=document.createElement("img");
+img.src=p.img;
+
+img.onclick=function(){
+
+document.getElementById("viewer").style.display="flex";
+document.getElementById("viewImg").src=p.img;
+document.getElementById("quote").innerText=p.quote;
+
+}
+
+g.appendChild(img);
+
+});
+
+function closeViewer(){
+document.getElementById("viewer").style.display="none";
+}
+
+/* hearts */
+
+setInterval(()=>{
+
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"%";
+
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),6000);
+
+},600);
+
+/* petals */
+
+setInterval(()=>{
+
+let p=document.createElement("div");
+p.className="petal";
+p.innerHTML="🌹";
+p.style.left=Math.random()*100+"%";
+
+document.body.appendChild(p);
+
+setTimeout(()=>p.remove(),8000);
+
+},900);
+
+/* love letter */
+
+let text="My love, sach kahu to tum meri life ki sabse beautiful cheez ho. Tumhari smile meri duniya ko brighter bana deti hai. Kabhi kabhi lagta hai universe ne tumhe specially mere liye banaya hai. Main promise karta hoon ki chahe life me kuch bhi ho, main hamesha tumhare saath rahunga. Happy Birthday My Queen 👑";
+
+let i=0;
+
+function type(){
+
+if(i<text.length){
+
+document.getElementById("letter").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(type,40);
+
+}
+
+}
+
+type();
+
+/* countdown */
+
+let target=new Date("March 12 2026 00:00").getTime();
+
+setInterval(()=>{
+
+let now=new Date().getTime();
+
+let d=target-now;
+
+let days=Math.floor(d/(1000*60*60*24));
+let hrs=Math.floor((d%(1000*60*60*24))/(1000*60*60));
+let min=Math.floor((d%(1000*60*60))/(1000*60));
+let sec=Math.floor((d%(1000*60))/1000);
+
+document.getElementById("countdown").innerHTML=
+days+"d "+hrs+"h "+min+"m "+sec+"s";
+
+},1000);
+
+</script>
+
+</body>
+</html>
